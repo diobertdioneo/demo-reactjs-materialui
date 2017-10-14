@@ -4,6 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 
+import Navigation from './Navigation'
+
 class Login extends Component {
 
 	constructor(props){
@@ -23,7 +25,7 @@ class Login extends Component {
 		
 	    return (
 	    	<div className="Login" >
-	    	<AppBar title="Demo Login" showMenuIconButton={false} />
+	    	<Navigation />
 	        	<Paper style={loginPanelStyle} zDepth={2}>
 	        		<div>
 			            <TextField

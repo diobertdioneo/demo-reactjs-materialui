@@ -13,67 +13,49 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
+import Navigation from './Navigation'
+
 class Workspace extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {open: false};
+		this.state = {
+			open: false,
+			employees: [{"id":1,"name":"John Doe", "email":"john.doe@fakeemail.com"}]
+		};
 	}
 
 	handleToggle = () => this.setState({open: !this.state.open});
-	handleClose = () => this.setState({open: false});
+	handleClose = () => {
+		this.setState({open: false});
+	}
+
 	handleLogout = () =>{
-		this.props.setAuthenticated(false);
+	}
+
+	retrieveEmployees = () => {
 	}
 	
 
 	render() {
 	    return (
 	    	<div className="Workspace">
-	    	<AppBar title="Demo Workspace" onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={<FlatButton label="Logout" onClick={(event) => this.handleLogout(event)}/>} />
-		    	<Drawer
-		          docked={false}
-		          width={200}
-		          open={this.state.open}
-		          onRequestChange={(open) => this.setState({open})}
-		        >
-		        	<MenuItem onClick={this.handleClose}>Employees</MenuItem>
-		        </Drawer>
+	    		<Navigation/>
 	        	<Paper zDepth={2}>
 	        		<Table>
 					    <TableHeader>
 					      <TableRow>
 					        <TableHeaderColumn>ID</TableHeaderColumn>
 					        <TableHeaderColumn>Name</TableHeaderColumn>
-					        <TableHeaderColumn>Status</TableHeaderColumn>
+					        <TableHeaderColumn>Email</TableHeaderColumn>
 					      </TableRow>
 					    </TableHeader>
 					    <TableBody>
-					      <TableRow>
-					        <TableRowColumn>1</TableRowColumn>
-					        <TableRowColumn>John Smith</TableRowColumn>
-					        <TableRowColumn>Employed</TableRowColumn>
-					      </TableRow>
-					      <TableRow>
-					        <TableRowColumn>2</TableRowColumn>
-					        <TableRowColumn>Randal White</TableRowColumn>
-					        <TableRowColumn>Unemployed</TableRowColumn>
-					      </TableRow>
-					      <TableRow>
-					        <TableRowColumn>3</TableRowColumn>
-					        <TableRowColumn>Stephanie Sanders</TableRowColumn>
-					        <TableRowColumn>Employed</TableRowColumn>
-					      </TableRow>
-					      <TableRow>
-					        <TableRowColumn>4</TableRowColumn>
-					        <TableRowColumn>Steve Brown</TableRowColumn>
-					        <TableRowColumn>Employed</TableRowColumn>
-					      </TableRow>
-					      <TableRow>
-					        <TableRowColumn>5</TableRowColumn>
-					        <TableRowColumn>Christopher Nolan</TableRowColumn>
-					        <TableRowColumn>Unemployed</TableRowColumn>
-					      </TableRow>
+						    <TableRow>
+						    	<TableRowColumn>1</TableRowColumn>
+						    	<TableRowColumn>John Doe</TableRowColumn>
+						    	<TableRowColumn>john.doe@fake.email.com</TableRowColumn>
+					    	</TableRow>
 					    </TableBody>
 					  </Table>
 				</Paper>
@@ -81,5 +63,9 @@ class Workspace extends Component {
 	    );
  	}
 }
+
+const restUrl = {
+	"usersUrl": "http://jsonplaceholder.typicode.com/users"
+};
 
 export default Workspace;
